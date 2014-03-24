@@ -53,7 +53,7 @@
 ;
 ;; Enable wheelmouse support by default
 
-(setq load-path (cons "~/.emacs.d" load-path))
+(add-to-list 'load-path "~/.emacs.d/")
 
 (require 'mwheel)
 (require 'ps-print)
@@ -69,6 +69,8 @@
 (require 'jade-mode)
 (require 'coffee-mode)
 (require 'glsl-mode)
+(require 'lua-mode)
+(require 'linum)
 (add-to-list 'auto-mode-alist '("\\.xsi$" . xs-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl$" . tpl-mode))
 (add-to-list 'auto-mode-alist '("\\.tt$" . tt-mode))
@@ -83,6 +85,11 @@
 (add-to-list 'auto-mode-alist '("\\.geom$" . glsl-mode))
 (add-to-list 'auto-mode-alist '("\\.glsl$" . glsl-mode))
 
+(add-to-list 'load-path "~/.emacs.d/haskell-mode/")
+(require 'haskell-mode-autoloads)
+(add-to-list 'Info-default-directory-list "~/.emacs.d/haskell-mode/")
+(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
+(setq haskell-indent-thenelse 2)
 
 ;; Printing
 ;; 2 column landscape size 7 prints column 0-78, lines 1 to 70
@@ -107,12 +114,14 @@
  '(cperl-close-paren-offset -4)
  '(cperl-tab-always-indent t)
  '(cperl-indent-parens-as-block t)
+ '(c-default-style "linux")
+ '(c-indent-level 4)
+ '(c-substatement-open 0)
+ '(c-indent-tabs-mode t)
  '(inhibit-startup-screen t)
  )
 
 (setq compilation-scroll-output 'first-error)
-
-(setq c-default-style '((cmode . "stroustrup")))
 
 (defun untabify-buffer ()
     (interactive)
@@ -173,7 +182,7 @@
       )
   )
 
-(setq compile-command "cd ~/b; make")
+(setq compile-command "cd ~/b; time make")
 
 (define-key minibuffer-local-map
   [f3] (lambda () (interactive) 
