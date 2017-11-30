@@ -69,6 +69,7 @@
 (require 'jade-mode)
 (require 'coffee-mode)
 (require 'glsl-mode)
+(require 'google-c-style)
 (add-to-list 'auto-mode-alist '("\\.xsi$" . xs-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl$" . tpl-mode))
 (add-to-list 'auto-mode-alist '("\\.tt$" . tt-mode))
@@ -77,12 +78,15 @@
 (add-to-list 'auto-mode-alist '("\\.pod$" . perl-mode))
 (add-to-list 'auto-mode-alist '("\\.proto$" . protobuf-mode))
 (add-to-list 'auto-mode-alist '("\\.jade$" . jade-mode))
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
 (add-to-list 'auto-mode-alist '("\\.vert$" . glsl-mode))
 (add-to-list 'auto-mode-alist '("\\.frag$" . glsl-mode))
 (add-to-list 'auto-mode-alist '("\\.geom$" . glsl-mode))
 (add-to-list 'auto-mode-alist '("\\.glsl$" . glsl-mode))
 
+(add-hook 'c-mode-common-hook 'google-set-c-style)
+(add-hook 'c-mode-common-hook 'google-make-newline-indent)
 
 ;; Printing
 ;; 2 column landscape size 7 prints column 0-78, lines 1 to 70
@@ -108,6 +112,11 @@
  '(cperl-tab-always-indent t)
  '(cperl-indent-parens-as-block t)
  '(inhibit-startup-screen t)
+ '(js2-basic-offset 4)  
+ '(js2-bounce-indent-p nil)
+ '(indent-tabs-mode nil)
+ '(c-basic-offset 4)
+ '(js-indent-level 4)
  )
 
 (setq compilation-scroll-output 'first-error)
